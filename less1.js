@@ -1,28 +1,28 @@
-const fs = require("fs");
-const http = require("http");
-const url = require("url");
+const fs=require("fs");
+const http=require("http");
+const url=require("url");
 
-let homeContent = "";
-let projectContent = "";
-let registrationContent = "";
+let home="";
+let project="";
+let registration="";
 
 fs.readFile("h.html", (err, home) => {
   if (err) {
     throw err;
   }
-  homeContent = home;
+  home = home;
 });
 fs.readFile("p.html", (err, project) => {
   if (err) {
     throw err;
   }
-  projectContent = project;
+  project = project;
 });
 fs.readFile("r.html", (err, registration) => {
   if (err) {
     throw err;
   }
-  registrationContent = registration;
+  registration = registration;
 });
 
 const server = http.createServer((req, res) => {
@@ -33,15 +33,15 @@ const server = http.createServer((req, res) => {
 
   switch (pathname) {
     case "/project":
-      res.write(projectContent);
+      res.write(project);
       res.end();
       break;
     case "/registration":
-      res.write(registrationContent);
+      res.write(registration);
       res.end();
       break;
     default:
-      res.write(homeContent);
+      res.write(home);
       res.end();
       break;
   }
